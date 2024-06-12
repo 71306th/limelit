@@ -64,8 +64,8 @@ public class Robot extends TimedRobot {
   static final double limitdefault = 0.0009;
   static final double windupdefault = 0.00005; //current best
   static final double spiddefault = 0.3;
-  static final double omdefault = 0.17;
-  static final double offsetdefault = -0.15;
+  static final double omdefault = 0.017;
+  static final double offsetdefault = 0.16;
 
   static final String pkey = "kp";
   static final String ikey = "ki";
@@ -151,9 +151,9 @@ public class Robot extends TimedRobot {
     
     SmartDashboard.putNumber("tpcs_LRF", table.getEntry("targetpose_cameraspace").getDoubleArray(new double[6])[2]);
     SmartDashboard.putNumber("pp", 0.015);
-    vel = Math.sqrt(table.getEntry("targetpose_cameraspace").getDoubleArray(new double[6])[2]*cg/Math.sin(theta*2));
-    SmartDashboard.putNumber("raw speed", vel);
-    SmartDashboard.putNumber("speed", vel*offsetmultiplier+offset);
+    vel = Math.sqrt(table.getEntry("targetpose_cameraspace").getDoubleArray(new double[6])[2]*cg/Math.sin(theta*2))*offsetmultiplier+offset;
+    // SmartDashboard.putNumber("raw speed", vel);
+    SmartDashboard.putNumber("speed", vel);
     // SmartDashboard.putNumber("time", time);
     
     if(controller.getLeftBumperPressed()){
